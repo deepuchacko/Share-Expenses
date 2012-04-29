@@ -1,0 +1,72 @@
+<apex:page controller="ShareExpenses" showHeader="false" sidebar="false" standardStylesheets="false">
+    <head>
+        <meta property="fb:app_id" content="{!$Setup.FB__c.APP_ID__c}" />
+        <meta property="og:url" content="{!$Setup.FB__c.APP_URL__c}" />
+        <meta property="og:title" content="Share Expenses"/>
+        <meta property="og:image" content="https://fbcdn-photos-a.akamaihd.net/photos-ak-snc7/v85005/236/333553053373076/app_1_333553053373076_662868355.gif" />
+        <meta property="og:site_name" content="Share Expenses"/>
+        <meta property="og:description" content="Share expenses easily with your friends right here from within Facebook. Track friends who owe you, friends you owe and recent activity all here."/>
+        <meta property="og:type" content="website" />
+        
+        <link href="{!$Resource.appicon}" id="favicon" rel="shortcut icon"/>
+        <title>Share Expenses</title>
+    </head>
+    <link rel="stylesheet" href="{!URLFOR($Resource.cssShareExpenses)}" type="text/css"></link>
+    <body>
+        <div id="fb-root"></div>
+        <div id="heading" class="ui-corner-all" style="width: 100%">
+            <div class="float-left">
+                <img src="{!$Resource.appicon}" class="float-left"/>
+                <h1>Share Expense <!--div class="fb-like" data-send="true" data-width="450" data-show-faces="true"></div--></h1>
+                <p style="margin: 0px; padding: 5px; font-size: small;">
+                    Share expenses easily with your friends right here from within Facebook. Track friends who owe you, friends you owe and recent activity all within the same page.                    
+                </p>
+            </div>
+        </div>
+        <table id="content" style="width: 100%"><tr>
+            <td id="east" class="clear" style="width: 10%">
+                <h3 class="bottom-border header-border" style="width: 95px; text-align: center;">Friends Owe You</h3>
+            </td>
+            <td id="central" class="float-left" style="width: 80%">
+                <div id="exp-add" class="clear" style="margin-top: 5px; margin-bottom: 11px;">
+                    <input id="inputExpense" type="text" placeholder="Share an expense with your friends" style="height: 20px; width: 500px;"/><br/>
+                    <h3 class="invisible">Add Expense</h3>
+                    <div class="float-left invisible">
+                        <span style="width: 50px; padding-right: 20px;"> Paid By </span> <span> Paid For </span>
+                        <div id="friendslist">
+                            <div class="float-left" id="whopaid">
+                                <img/>
+                            </div>
+                            <div class="float-left" id="sharedwith" style="margin-left: 23px; width: 383px; ">
+                                <input type="text" id="search" placeholder="Search Friends..." style="width: 100px; vertical-align: top;"/>
+                            </div>                
+                        </div><br/>
+                        <div class="clear"/>
+                        <input type="text" id="location" placeholder="Where was this?" style="width: 235px;"/>
+                        <input type="text" id="expensedt" placeholder="When was this?" style="width: 100px;"/>
+                        <input type="text" id="amount" placeholder="How much was it?" style="width: 110px; margin-bottom: 11px;"/>
+                        <button>Add</button>
+                    </div>
+                    <div class="float-left invisible" id="recentFriends">
+                    </div>
+                    <div id="message" class="invisible"/>
+                </div>
+                <div id="activity" class="clear top-border header-border" style="padding-top: 5px; margin-top: 10px;"/>
+            </td>
+            <td id="west" class="float-left" style="width: 10%">
+                <h3 class="bottom-border header-border" style="width: 100px; text-align: center;">You Owe Friends</h3>
+            </td>
+        </tr></table>
+        <div id="footer"/>
+        <br/>
+    </body>
+    <script>
+        // Global variables
+        var fbid = '{!$Setup.FB__c.APP_ID__c}';
+        var oauth = '{!$Setup.FB__c.FBOAuth__c}';
+    </script>
+    <script src="https://connect.facebook.net/en_US/all.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+    <script src="{!URLFOR($Resource.jsShareExpenses)}"></script>
+</apex:page>
